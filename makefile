@@ -1,0 +1,2 @@
+all:
+	@py bird.py
