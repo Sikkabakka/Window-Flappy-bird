@@ -9,33 +9,35 @@ from utils import *
 class Bird:
     def __init__(self, size):
         self.size = size
-        self.window = None
-        self.position = ()
-    
-    def spawn(self):
-        
+        self.window = tkinter.Tk()
+        self.window.title("Bird")
+        self.velocity = 10
         monitor = getMonitorDimensions()
-        root = tkinter.Tk()
-        root.title("Bird")
-        
-        self.window = root
         self.position = (int(monitor["width"]/10) , int(monitor["height"]/2)- self.size)
-  
         
+    def spawn(self):
+       
         bilde = Image.open("bilder/flappy_bird.png").resize((self.size, self.size))
         sprite = ImageTk.PhotoImage(bilde)
-        label = Label(root, image = sprite, width= self.size, height=self.size)
+        label = Label(self.window, image = sprite, width= self.size, height=self.size)
         label.pack()
         
         
-        root.geometry(f"{self.size}x{self.size}")
-        root.geometry(f"+{self.position[0]}+{self.position[1]}")
-     
-        root.mainloop()
-    def jump(self):
+        self.window.geometry(f"{self.size}x{self.size}")
+        self.window.geometry(f"+{self.position[0]}+{self.position[1]}")
+        self.window.mainloop()
         
-        print(self.window.winfo_x())
+    def flap(self):
+        self.velocity = -10
         return
+
+       
+        
+    def update(self):
+        self.position = (self.position[0], self.position[1]+self.velocity)
+        self.window.geometry(f"+{self.position[0]}+{self.position[1]}")
+        
+     
           
 
 

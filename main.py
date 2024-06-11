@@ -6,14 +6,25 @@ from birdscript import Bird
 
 def check_for_spacebar():
     while True:
-        print("waiting for space")
-        keyboard.wait("space")
-        bird.jump()
-        print("pressed")
+        if (keyboard.is_pressed("space")):
+            bird.flap()
+            time.sleep(0.1)
+        
         
         
 bird = Bird(100)
-thread = threading.Thread(target=check_for_spacebar, daemon=True).start(  )
-Running = True
+threading.Thread(target=check_for_spacebar, daemon=True).start()
+def main_loop():
+    Running = True
+    while Running:
+        print("hwlloe")
+        bird.update()
+        
+        
+threading.Thread(target=main_loop, daemon=True).start()
 bird.spawn()
-print(bird)
+
+
+
+
+    
