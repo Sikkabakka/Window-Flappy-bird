@@ -57,8 +57,11 @@ class Bird:
             self.update()
             self.check_out()
             self.window.after(16, self.main_loop)
+        else:
+            print("du tapte")   
+            
     def check_out(self):
-        if (self.position[1] > self.monitor["height"]):
+        if (self.position[1] +self.size > self.monitor["height"]):
             self.running = False
             
 
