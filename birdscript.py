@@ -1,19 +1,15 @@
 
 from tkinter import *
-import tkinter
 from PIL import Image, ImageTk
 from utils import *
-import time 
-import threading
-import keyboard
 import math
 
 
 class Bird:
-    def __init__(self, size):
+    def __init__(self, size, root):
         self.running = False
         self.size = size
-        self.window = tkinter.Tk()
+        self.window = root
         self.window.title("Bird")
         self.velocity = 0
         self.flap_strength = -10
@@ -32,13 +28,11 @@ class Bird:
         self.window.bind("<space>", self.flap)
         self.window.geometry(f"{self.size}x{self.size}")
         self.window.geometry(f"+{self.position[0]}+{self.position[1]}")
-        self.run()
+
        
-        
-        self.window.mainloop()
-        
+    def remove_border(self):
+        self.window.overrideredirect(True)
     def flap(self, event = None):
-        print("flapped")
         self.velocity = self.flap_strength
   
         
@@ -49,24 +43,13 @@ class Bird:
         
         self.position = (self.position[0], math.floor(self.position[1]+ self.velocity))
         self.window.geometry(f"+{self.position[0]}+{self.position[1]}")
-        self.startime = time.time()
+    
         
-        
-    def main_loop(self):
-        if self.running:
-            self.update()
-            self.check_out()
-            self.window.after(16, self.main_loop)
-        else:
-            print("du tapte")   
-            
     def check_out(self):
-        if (self.position[1] +self.size > self.monitor["height"]):
-            self.running = False
+        if (self.position[1] +self.size > self.monitor["height"] or  self.position[1] <= 0):
+            return True
             
 
-    def run(self):
-        self.running = True
-        self.main_loop()
+
           
 
