@@ -8,13 +8,13 @@ import math
 class Bird:
     def __init__(self, size, root):
         self.running = False
-        self.size = size
+        self.monitor = getMonitorDimensions()
+        self.size = 100
         self.window = root
         self.window.title("Bird")
         self.velocity = 0
         self.flap_strength = -10
         self.gravity = 0.5
-        self.monitor = getMonitorDimensions()
         self.position = (int(self.monitor["width"]/10) , int(self.monitor["height"]/2)- self.size)
         self.startime = 0
         

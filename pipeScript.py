@@ -5,15 +5,15 @@ from PIL import Image, ImageTk
 
 class Pipe:
     def __init__(self, root1, root2):
-        self.size = 100
         self.monitor = getMonitorDimensions()
-        self.space = self.monitor["height"]//4
+        self.size = self.monitor["width"]//20
+        self.space = self.monitor["height"]//3
         self.top_position = randint(50, self.monitor["height"]-50 - self.space)
         self.top_pipe = root1
         self.bottom_pipe = root2
        
-        self.width = 244
-        self.x = self.monitor["width"]
+        self.width = round(self.size*2.44)
+        self.x = self.monitor["width"] -self.width
         self.speed = 4
         self.running = False
         self.bilde = Image.open("bilder/pipe.png")

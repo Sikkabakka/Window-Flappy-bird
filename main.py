@@ -43,7 +43,7 @@ def main_loop():
         pipe.spawn()
         pipes.append(pipe)
         startInterval = endInterval
-        
+ 
     if running:
         bird.update()
         if bird.check_out():
