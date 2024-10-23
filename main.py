@@ -11,7 +11,7 @@ bird = Bird(100, root)
   
 bird.spawn()
 
- 
+bird.remove_border()
 
 score = 0
 startime = time.time()
@@ -41,7 +41,9 @@ def main_loop():
         print(score)
         pipe = Pipe(tkinter.Toplevel(root), tkinter.Toplevel(root))
         pipe.spawn()
+        pipe.remove_borders( )
         pipes.append(pipe)
+    
         startInterval = endInterval
  
     if running:
